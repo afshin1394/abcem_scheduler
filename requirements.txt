@@ -1,0 +1,10 @@
+pydantic-settings~=2.8.1
+fastapi~=0.115.12
+SQLAlchemy==1.4.46
+psycopg2~=2.9.10
+httpx~=0.28.1
+pydantic~=2.11.3
+apache-airflow~=2.10.5
+uvicorn==0.34.0
+starlette==0.45.3
+requests~=2.32.3
