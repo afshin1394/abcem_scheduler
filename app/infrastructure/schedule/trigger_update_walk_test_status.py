@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta
 
 from fastapi import HTTPException
 from httpx import BasicAuth
@@ -6,10 +5,13 @@ from httpx import BasicAuth
 from app.core.config import settings
 from app.infrastructure.dags.update_walk_test_status_dag import WalkTestStatusEnum
 from app.infrastructure.di import get_http_client
+from app.infrastructure.schedule import unpause_dag
 
 
 async def trigger_update_walk_test_dag(airflow_dag_id: str, walk_test_id: str,
                                        walk_test_status_id: WalkTestStatusEnum) -> str:
+    await unpause_dag(airflow_dag_id)
+
     dag_run_id = f"{airflow_dag_id}__{walk_test_id}"  # ensure unique run_id
 
     payload = {
